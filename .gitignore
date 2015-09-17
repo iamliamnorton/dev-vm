@@ -1,0 +1,4 @@
+*.swp
+.vagrant
+/projects/*
+!/projects/.gitkeep
