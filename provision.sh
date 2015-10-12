@@ -28,7 +28,7 @@ dpkg-divert --local --divert /usr/bin/ack --rename --add /usr/bin/ack-grep
 curl -o /usr/local/bin/ack http://beyondgrep.com/ack-2.04-single-file
 chmod 0775 /usr/local/bin/ack
 
-curl -s -L ${COMPOSE_SRC}/${COMPOSE_VER}/${COMPOSE_PKG} > /tmp/docker-compose
+curl -sSL ${COMPOSE_SRC}/${COMPOSE_VER}/${COMPOSE_PKG} > /tmp/docker-compose
 mv /tmp/docker-compose /usr/local/bin/docker-compose
 chmod +x /usr/local/bin/docker-compose
 
