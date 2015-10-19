@@ -17,6 +17,10 @@ vboxfs.
 Now use docker, as it's on the machine itself. SSH forwarding is enabled by
 default.
 
+Put the following line in your `/etc/hosts` file to access in browser at `http://dev.vm/`.
+
+    192.168.21.11 dev.vm
+
 ### File storage
 
 The symlink in your home directory called ~/projects points into the /vagrant
