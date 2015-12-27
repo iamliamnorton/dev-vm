@@ -1,6 +1,6 @@
 #!/bin/bash
 
-DOCKER_VER="1.8.1-0~trusty"
+DOCKER_VER="1.9.1-0~trusty"
 COMPOSE_SRC="https://github.com/docker/compose/releases/download"
 COMPOSE_VER="1.4.0"
 COMPOSE_PKG="docker-compose-`uname -s`-`uname -m`"
