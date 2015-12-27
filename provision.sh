@@ -4,6 +4,7 @@ DOCKER_VER="1.8.1-0~trusty"
 COMPOSE_SRC="https://github.com/docker/compose/releases/download"
 COMPOSE_VER="1.4.0"
 COMPOSE_PKG="docker-compose-`uname -s`-`uname -m`"
+ACK_VER="2.14"
 
 sudo sh <<EOF
 apt-key adv \
@@ -25,7 +26,7 @@ apt-get -y --force-yes --no-install-recommends install \
 
 dpkg-divert --local --divert /usr/bin/ack --rename --add /usr/bin/ack-grep
 
-curl -o /usr/local/bin/ack http://beyondgrep.com/ack-2.04-single-file
+curl -sSL /usr/local/bin/ack "http://beyondgrep.com/ack-${ACK_VER}-single-file"
 chmod 0775 /usr/local/bin/ack
 
 curl -sSL ${COMPOSE_SRC}/${COMPOSE_VER}/${COMPOSE_PKG} > /tmp/docker-compose
