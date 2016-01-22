@@ -24,7 +24,7 @@ Vagrant.configure("2") do |config|
     privileged: false,
     inline:     "(cd /vagrant && ./provision.sh)"
 
-  # give the vm a gigabyte of ram
+  # give the vm 2 gigabytes of ram
   config.vm.provider "virtualbox" do |v|
     v.memory = 2048
     v.customize ["modifyvm", :id, "--natdnshostresolver1", "on"]
