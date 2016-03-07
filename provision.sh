@@ -2,7 +2,7 @@
 
 sudo \
   DOCKER_VER="1.10.2" \
-  COMPOSE_VER="1.6.0" \
+  COMPOSE_VER="1.6.2" \
   DOCKER_USER=`whoami` \
   sh <<'EOF'
 apt-key adv \
