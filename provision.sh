@@ -1,8 +1,8 @@
 #!/bin/bash -ex
 
 sudo \
-  DOCKER_VER="1.10.2" \
-  COMPOSE_VER="1.6.2" \
+  DOCKER_VER="1.10.1" \
+  COMPOSE_VER="1.6.0" \
   DOCKER_USER=`whoami` \
   sh <<'EOF'
 apt-key adv \
