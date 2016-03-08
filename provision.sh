@@ -1,8 +1,8 @@
 #!/bin/bash -ex
 
 sudo \
-  DOCKER_VER="1.10.1" \
-  COMPOSE_VER="1.6.0" \
+  DOCKER_VER="1.10.2" \
+  COMPOSE_VER="1.6.2" \
   DOCKER_USER=`whoami` \
   sh <<'EOF'
 apt-key adv \
@@ -15,24 +15,33 @@ echo 'deb https://apt.dockerproject.org/repo ubuntu-trusty main' \
 DEBIAN_FRONTEND=noninteractive \
   apt-get -y update && \
   apt-get -y upgrade && \
-  apt-get purge lxc-docker && \
   apt-get -y --force-yes --no-install-recommends install \
-    docker-engine=${DOCKER_VER}-0~trusty \
-    linux-image-extra-$(uname -r) \
-    git-core \
-    make \
     ack-grep \
+    docker-engine=${DOCKER_VER}-0~trusty \
+    git-core \
+    linux-image-extra-$(uname -r) \
+    make \
+    unzip \
     vim
 
 dpkg-divert --local --divert /usr/bin/ack --rename --add /usr/bin/ack-grep
 
-COMPOSE_URL="https://github.com/docker/compose/releases/download"
-COMPOSE_PKG="docker-compose-`uname -s`-`uname -m`"
+echo "# aws cli"
+cd /tmp
+curl "https://s3.amazonaws.com/aws-cli/awscli-bundle.zip" -o "awscli-bundle.zip"
+unzip awscli-bundle.zip
+apt-get -y purge unzip
+./awscli-bundle/install -i /usr/local/aws -b /usr/local/bin/aws
+rm -rf awscli-bundle*
 
-curl -sSL "$COMPOSE_URL/$COMPOSE_VER/$COMPOSE_PKG" > /tmp/docker-compose
-mv /tmp/docker-compose /usr/local/bin/docker-compose
+echo "# docker-compose"
+compose_url="https://github.com/docker/compose/releases/download"
+compose_pkg="docker-compose-`uname -s`-`uname -m`"
+curl -sSL "$compose_url/$COMPOSE_VER/$compose_pkg" > docker-compose
+mv docker-compose /usr/local/bin/docker-compose
 chmod +x /usr/local/bin/docker-compose
 
+echo "# docker user groups"
 usermod -aG docker ${DOCKER_USER}
 usermod -aG docker $(whoami)
 
