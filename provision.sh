@@ -20,7 +20,7 @@ DEBIAN_FRONTEND=noninteractive \
 apt-get -y --force-yes install \
   docker-engine=${DOCKER_VER}-0~trusty \
   linux-image-extra-$(uname -r) \
-  git make unzip vim
+  ack-grep git make unzip vim
 
 dpkg-divert \
   --local --divert /usr/bin/ack \
